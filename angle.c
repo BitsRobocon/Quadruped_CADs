@@ -1,5 +1,5 @@
-#include stdio.h 
-#include math.h 
+#include <stdio.h>
+#include <math.h>
 
 #define offset_knee 0
 #define offset_hip 0
