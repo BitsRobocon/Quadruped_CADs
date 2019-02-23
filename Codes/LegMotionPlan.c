@@ -14,26 +14,19 @@ Origin is the point exactly (height of hip) distance below the hip joint and zer
   ./
 
 point defines the point in consideration at all times
-
-
-
-
-
-
-
 */
 
 /////////////////////////////////////   defintitions       /////////////////////////////////////////////////////////////////////
 
-define ohmac1  0                //actual (physical) angle of femur with vertical at a particular time
-define ohmmot1 0                //value fed to motor (pos) for that femur angle
-define ohmac2 0 
-define ohmmot2 0
+define ohmac1  90                //actual (physical) angle of femur with vertical at a particular time
+define ohmmot1 37                //value fed to motor (pos) for that femur angle
+define ohmac2 5
+define ohmmot2 137
 
-define thetaac1 0               //actual (physical) angle of tibia with femur at a particular time
-define thetaac2 0               //value fed to motor (pos) for that tibia angle
-define thetamot1 0
-define thetamot2 0
+define thetaac1 0              //actual (physical) angle of tibia with femur at a particular time
+define thetaac2 50               //value fed to motor (pos) for that tibia angle
+define thetamot1 55
+define thetamot2 180
 
 
 define femur_length 18           // in cm
