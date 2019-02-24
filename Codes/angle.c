@@ -10,13 +10,13 @@ global float height;
 
 float find_ohm(float x, float y){
 	float magsquare= (pow((h-y),2)+pow(x,2));
-	float a= (pow((h-y),2)+pow(x,2)+pow(femur_length,2)-pow(tibia_length,2))/(2*femur_length*(pow(magsquare,0.5));
+	float a= (pow((h-y),2)+pow(x,2)+pow(femur_length,2)-pow(tibia_length,2))/(2*femur_length*(pow(magsquare,0.5)));
 	float b= (h-y)/pow(magsquare, 0.5);
 	float angle = asin(a)-asin(b);
 	return angle;
 }
 
-
+/////////////////////////helloooooo
 float find_theta(float x, float ohm){
 	float sinval = ((femur_length*sin(ohm)-x)/tibia_length);
 	float angle= asin(sinval)-ohm;
