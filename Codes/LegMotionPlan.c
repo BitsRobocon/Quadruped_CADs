@@ -97,6 +97,7 @@ float find_motor_theta(float theta_ac){          //finds the motor pos of theta 
 		thetaac= find_theta(x, ohmac);         /////// give the output to the servos
 		//kservo.write(find_motor_theta(thetaac));
 		//hservo.write(find_motor_ohm(ohmac));
+		delay(100);
 	}
 	for ( ; ; x-=0.1){     /////////////define the conditions
 		y=f(x);
@@ -104,6 +105,7 @@ float find_motor_theta(float theta_ac){          //finds the motor pos of theta 
 		thetaac= find_theta(x, ohmac);
 		//kservo.write(find_motor_theta(thetaac));
 		//hservo.write(find_motor_ohm(ohmac));
+		delay(100);
 	}
 
 
