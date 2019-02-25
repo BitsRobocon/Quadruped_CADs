@@ -16,7 +16,7 @@ float find_ohm(float x, float y){
 	return angle;
 }
 
-/////////////////////////helloooooo
+
 float find_theta(float x, float ohm){
 	float sinval = ((femur_length*sin(ohm)-x)/tibia_length);
 	float angle= asin(sinval)-ohm;
