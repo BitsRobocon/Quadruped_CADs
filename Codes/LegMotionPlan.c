@@ -7,7 +7,7 @@
 	>Origin is the point exactly <height of hip> distance below the hip joint and zero horizontal distance apart
 	 _________
 	   \    ------- ohm
-	    \ 
+	    \
 	     \ _____________ theta
 	     /
 	    /
@@ -33,7 +33,7 @@
 
 
 #define femur_length 18.5           // in cm
-#define tibia_length 17            
+#define tibia_length 17
 #define h 25.1               // height of hip in cm
 
 // Servo kservo;        // create servo object to control a servo
@@ -42,7 +42,7 @@
 // int pos =0;
 
 /*void setup() {
-  kservo.attach(8); 
+  kservo.attach(8);
   hservo.attach(9);// attaches the servo on pin 9 to the servo object
 }*/
 ////////////////////////////////////    definitions over. functions defined      ///////////////////////////////////////////////////////
@@ -50,26 +50,42 @@
 
 float find_ohm(float x, float y){              ////finds physical ohm for a given combination of x and y
 
-	float magsquare= (pow((h-y),2)+pow(x,2));    // square of magnitude of the location of point wrt origin 
-	float a= (pow((h-y),2)+pow(x,2)+pow(femur_length,2)-pow(tibia_length,2))/(2*femur_length*(pow(magsquare,0.5)));
-	float b= (h-y)/pow(magsquare, 0.5);
-	float angle = (asin(a)+asin(b))*(180/3.1415);                                  //converting to degrees
+	float magsquare= (pow((h-y),2)+pow(x,2));    // square of magnitude of the location of point wrt origin
+	float a= (magsquare+femur_length*femur_length-tibia_length*tibia_length)/(2*femur_length*(pow(magsquare,0.5)));
+	printf("a=%f\n", a);
+	float b= x/pow(magsquare, 0.5);
+	printf("b=%f\n", b);
+	float angle = (acos(a)+asin(b))*((float)180/3.1415);
+	printf("angle=%f\n", angle);                                 //converting to degrees
 	if (angle> 90)                                     //getting the angles within the appropriate range (0 to 180)
 		angle=angle-180;
 	else if (angle<-90)
 		angle=angle+180;
 	return angle;
-}               
+}
 
-float find_theta(float x, float ohm){                   //finds physical theta for a given combination of x and y, or x and ohm
-	float sinval = ((femur_length*sin(ohm*(3.1415/180))-x)/tibia_length);
-	float angle= (asin(sinval)*(180/3.1415)+ohm);       //converting to degrees
+float find_theta2(float x, float y){
+	float cosval=((femur_length*femur_length+tibia_length*tibia_length-(h-y)*(h-y)-x*x))/(2*tibia_length*femur_length);
+	float angle= acos(cosval)*((float)180/3.1415);
 	if (angle> 180)                                     //getting the angles within the appropriate range (0 to 180)
-		angle=angle-180;                               ///////////////////////Debug here  
+		angle=angle-180;                               ///////////////////////Debug here
 	else if (angle<0)
 		angle=angle+180;
 	return angle;
 }
+
+/*
+float find_theta(float x, float ohm){                   //finds physical theta for a given combination of x and y, or x and ohm
+	float sinval = ((femur_length*sin(ohm*(3.1415/180))-x)/tibia_length);
+	printf("sinval=%f\n", sinval);
+	float angle= (asin(sinval)*(180/3.1415)+ohm);       //converting to degrees
+	printf("angle=%f\n", angle);
+	if (angle> 180)                                     //getting the angles within the appropriate range (0 to 180)
+		angle=angle-180;                               ///////////////////////Debug here
+	else if (angle<0)
+		angle=angle+180;
+	return angle;
+}*/
 
 float find_motor_ohm(float ohm_ac){              ////finds the motor pos of ohm for a given physical ohm
 	float motor_ohm= (((ohmmot2-ohmmot1)/(ohmac2-ohmac1))*ohm_ac+ ohmac1);
@@ -129,21 +145,19 @@ int main(){
 	scanf(&tibia_length,"%f");
 	printf("height of hip:");
 	scanf(&height,"%f");*/
-	
-	
+
+
 	float ohmac= find_ohm(x,y);     //physical values of ohm and theta derived for particular x and y
-	float thetaac= find_theta(x, ohmac);
+	float thetaac= find_theta2(x, y);
 	printf("The actual values of (ohm, theta) are (%f, %f)\n", ohmac, thetaac);
 	//printf("The motor pos values of (ohm, theta) are (%f,%f)\n",find_motor_ohm(ohmac), find_motor_theta(thetaac) );
 
 
 
 	//complete_loop();
-	
+
 
 
 	return 0;
 
 }
-	
-	

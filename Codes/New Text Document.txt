@@ -1,0 +1,22 @@
+Please enter x 5
+y: 0
+The actual values of (ohm, theta) are (-52.849991, -1.#IND00)
+
+
+Please enter x 0
+y: 5
+The actual values of (ohm, theta) are (-52.055588, 68.830635)
+
+
+
+Please enter x -5
+y: 0
+The actual values of (ohm, theta) are (-52.849991, 92.171791)
+
+
+
+Please enter x 0
+y: -5
+The actual values of (ohm, theta) are (-30.529678, 115.910561)
+
+
